@@ -1,5 +1,5 @@
 import createMiddleware from 'next-intl/middleware';
-import {routing} from '~/lib/i18n/routing';
+import { routing } from '~/lib/i18n/routing';
 
 export default createMiddleware(routing);
 
@@ -14,6 +14,6 @@ export const config = {
 
     // Enable redirects that add missing locales
     // (e.g. `/pathnames` -> `/en/pathnames`)
-    '/((?!_next|_vercel|.*\\..*).*)'
-  ]
+    '/((?!api|!_next|_vercel|.*\\..*).*)',
+  ],
 };

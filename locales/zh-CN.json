@@ -10,5 +10,10 @@
   "localeSwitcher": {
     "label": "中文",
     "locale": "{locale, select, en {English} zhCN {中文} other {Unknown}}"
+  },
+  "offline": {
+    "title": "网站标题",
+    "description": "详情",
+    "tips": "提示"
   }
 }

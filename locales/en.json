@@ -10,5 +10,10 @@
   "localeSwitcher": {
     "label": "English",
     "locale": "{locale, select, en {English} zhCN {Chinese} other {Unknown}}"
+  },
+  "offline": {
+    "title": "Website Title",
+    "description": "description",
+    "tips": "tips"
   }
 }
