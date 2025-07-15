@@ -17,32 +17,33 @@ const withNextIntl = createNextIntlPlugin('./lib/i18n/request.ts');
 const nextConfig: NextConfig = {
   /* config options here */
   reactStrictMode: true,
-  // enable progressive page rendering (PPR)
-  ppr: true,
-  // enable React compiler
-  reactCompiler: true,
-  // enable typed routes
-  typedRoutes: true,
-  // optimize common package imports
-  optimizePackageImports: [
-    'react',
-    'react-dom',
-    'lucide-react',
-    'next-intl',
-    'zustand',
-    'sonner',
-    'tailwind-merge',
-    '@radix-ui/react-dialog',
-    '@radix-ui/react-dropdown-menu',
-    '@radix-ui/react-slot',
-    'class-variance-authority',
-  ],
-  // enable CSS code splitting
-  cssChunking: true,
-  // enable view transition
-  viewTransition: true,
-  // enable LightningCSS
-  useLightningcss: true,
+  // experimental features
+  experimental: {
+    // enable progressive page rendering (PPR) - requires canary version
+    // ppr: 'incremental',
+    // enable React compiler
+    // reactCompiler: true,
+    // enable LightningCSS
+    useLightningcss: true,
+    // enable view transition
+    viewTransition: true,
+    // enable CSS code splitting
+    cssChunking: true,
+    // optimize common package imports
+    optimizePackageImports: [
+      'react',
+      'react-dom',
+      'lucide-react',
+      'next-intl',
+      'zustand',
+      'sonner',
+      'tailwind-merge',
+      '@radix-ui/react-dialog',
+      '@radix-ui/react-dropdown-menu',
+      '@radix-ui/react-slot',
+      'class-variance-authority',
+    ],
+  },
   // configure image optimization
   images: {
     formats: ['image/avif', 'image/webp'],
