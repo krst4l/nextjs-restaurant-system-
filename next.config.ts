@@ -24,7 +24,7 @@ const nextConfig: NextConfig = {
     // enable React compiler
     // reactCompiler: true,
     // enable LightningCSS
-    useLightningcss: true,
+    // useLightningcss: true,  // can not work with postcss
     // enable view transition
     viewTransition: true,
     // enable CSS code splitting
