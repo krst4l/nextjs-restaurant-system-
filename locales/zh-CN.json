@@ -1,49 +1,53 @@
 {
   "homePage": {
-    "title": "Next.js AI Starter",
-    "subtitle": "终极现代化Web开发工具包",
-    "description": "生产就绪的Next.js模板，集成AI功能、国际化、暗黑模式和前沿UI组件。为想要快速交付的开发者而构建。",
-    "getStarted": "开始使用",
-    "learnMore": "查看GitHub",
-    "openSource": "🎉 开源免费",
+    "title": "餐饮管理系统",
+    "subtitle": "智能化餐厅运营管理平台",
+    "description": "现代化餐饮管理解决方案，集成订单管理、菜品管理、桌台管理和财务统计。帮助餐厅提升运营效率，优化客户体验。",
+    "getStarted": "开始管理",
+    "learnMore": "了解更多",
+    "openSource": "🍽️ 智能餐饮管理",
     "features": {
-      "ai": {
-        "title": "AI驱动",
-        "description": "内置AI集成和现代化API，为您的下一个智能应用做好准备"
+      "orders": {
+        "title": "订单管理",
+        "description": "实时订单处理、状态跟踪、自动厨房通知系统"
       },
-      "modern": {
-        "title": "现代技术栈",
-        "description": "Next.js 15、TypeScript、Tailwind CSS 和最新的Web技术"
+      "menu": {
+        "title": "菜品管理",
+        "description": "菜品信息维护、价格管理、库存状态实时更新"
       },
-      "i18n": {
-        "title": "国际化支持",
-        "description": "完整的i18n支持，使用next-intl，可全球部署"
+      "tables": {
+        "title": "桌台管理",
+        "description": "餐桌状态管理、预订系统、座位优化分配"
       },
-      "performance": {
-        "title": "性能优先",
-        "description": "使用服务器组件、边缘运行时和智能缓存进行速度优化"
+      "analytics": {
+        "title": "数据分析",
+        "description": "销售报表、营收统计、客流分析和经营洞察"
       }
     }
   },
   "layout": {
-    "title": "Next.js AI Starter",
+    "title": "餐饮管理系统",
     "menu": "菜单",
     "search": "搜索",
-    "home": "首页",
-    "features": "特性",
-    "docs": "文档",
-    "examples": "示例",
-    "about": "关于",
-    "github": "GitHub"
+    "dashboard": "仪表板",
+    "orders": "订单管理",
+    "menu": "菜品管理",
+    "tables": "桌台管理",
+    "staff": "员工管理",
+    "inventory": "库存管理",
+    "reports": "财务报表",
+    "settings": "系统设置"
   },
   "header": {
     "navigation": {
-      "home": "首页",
-      "features": "特性",
-      "docs": "文档",
-      "examples": "示例",
-      "about": "关于",
-      "github": "GitHub"
+      "dashboard": "仪表板",
+      "orders": "订单管理",
+      "menu": "菜品管理",
+      "tables": "桌台管理",
+      "staff": "员工管理",
+      "inventory": "库存管理",
+      "reports": "财务报表",
+      "settings": "系统设置"
     },
     "actions": {
       "search": "搜索",
@@ -52,58 +56,186 @@
       "settings": "设置"
     }
   },
+  "dashboard": {
+    "title": "仪表板",
+    "welcome": "欢迎回来",
+    "todayOverview": "今日概览",
+    "stats": {
+      "todayOrders": "今日订单",
+      "todayRevenue": "今日营收",
+      "activeTable": "活跃餐桌",
+      "waitingOrders": "待处理订单"
+    },
+    "recentOrders": "最近订单",
+    "popularDishes": "热门菜品",
+    "tableStatus": "餐桌状态"
+  },
+  "orders": {
+    "title": "订单管理",
+    "newOrder": "新建订单",
+    "orderNumber": "订单号",
+    "table": "餐桌",
+    "customer": "客户",
+    "items": "菜品",
+    "total": "总额",
+    "status": "状态",
+    "time": "时间",
+    "actions": "操作",
+    "statusOptions": {
+      "pending": "待确认",
+      "confirmed": "已确认",
+      "preparing": "制作中",
+      "ready": "待取餐",
+      "served": "已送达",
+      "completed": "已完成",
+      "cancelled": "已取消"
+    }
+  },
+  "menu": {
+    "title": "菜品管理",
+    "addDish": "添加菜品",
+    "categories": "分类",
+    "dishName": "菜品名称",
+    "price": "价格",
+    "category": "分类",
+    "description": "描述",
+    "image": "图片",
+    "available": "可用",
+    "actions": "操作",
+    "categoryOptions": {
+      "appetizer": "开胃菜",
+      "soup": "汤类",
+      "mainCourse": "主菜",
+      "dessert": "甜品",
+      "beverage": "饮品",
+      "special": "特色菜"
+    }
+  },
+  "tables": {
+    "title": "桌台管理",
+    "addTable": "添加餐桌",
+    "tableNumber": "桌号",
+    "seats": "座位数",
+    "status": "状态",
+    "currentOrder": "当前订单",
+    "actions": "操作",
+    "statusOptions": {
+      "available": "空闲",
+      "occupied": "使用中",
+      "reserved": "已预订",
+      "cleaning": "清洁中",
+      "maintenance": "维护中"
+    }
+  },
+  "staff": {
+    "title": "员工管理",
+    "addStaff": "添加员工",
+    "name": "姓名",
+    "position": "职位",
+    "phone": "电话",
+    "email": "邮箱",
+    "status": "状态",
+    "actions": "操作",
+    "positions": {
+      "manager": "经理",
+      "waiter": "服务员",
+      "chef": "厨师",
+      "cashier": "收银员"
+    }
+  },
+  "inventory": {
+    "title": "库存管理",
+    "addItem": "添加库存",
+    "itemName": "物品名称",
+    "quantity": "数量",
+    "unit": "单位",
+    "supplier": "供应商",
+    "lastUpdated": "最后更新",
+    "actions": "操作",
+    "lowStock": "库存不足",
+    "inStock": "库存充足"
+  },
+  "reports": {
+    "title": "财务报表",
+    "period": "时间段",
+    "totalRevenue": "总营收",
+    "totalOrders": "总订单数",
+    "averageOrder": "平均订单额",
+    "topDishes": "热销菜品",
+    "revenueChart": "营收趋势",
+    "orderChart": "订单趋势"
+  },
   "footer": {
     "project": {
-      "title": "项目",
-      "github": "GitHub仓库",
-      "documentation": "文档",
-      "examples": "示例",
-      "changelog": "更新日志"
+      "title": "系统",
+      "dashboard": "仪表板",
+      "documentation": "使用手册",
+      "support": "技术支持",
+      "updates": "系统更新"
     },
-    "community": {
-      "title": "社区",
-      "discussions": "讨论",
-      "issues": "问题反馈",
-      "contributing": "贡献指南",
-      "discord": "Discord"
+    "features": {
+      "title": "功能",
+      "orders": "订单管理",
+      "menu": "菜品管理",
+      "tables": "桌台管理",
+      "reports": "报表分析"
     },
-    "resources": {
-      "title": "资源",
-      "nextjs": "Next.js",
-      "tailwind": "Tailwind CSS",
-      "typescript": "TypeScript",
-      "vercel": "部署到Vercel"
+    "support": {
+      "title": "支持",
+      "help": "帮助中心",
+      "contact": "联系我们",
+      "feedback": "意见反馈",
+      "training": "培训资料"
     },
     "legal": {
       "title": "法律",
-      "license": "MIT许可证",
+      "license": "许可协议",
       "terms": "使用条款",
       "privacy": "隐私政策",
       "security": "安全政策"
     },
     "social": {
-      "title": "关注更新",
-      "twitter": "推特",
-      "github": "GitHub",
+      "title": "关注我们",
+      "wechat": "微信",
+      "weibo": "微博",
       "linkedin": "领英",
-      "discord": "Discord"
+      "qq": "QQ群"
     },
     "newsletter": {
-      "title": "保持更新",
-      "description": "获取新功能和更新通知",
+      "title": "获取更新",
+      "description": "订阅系统更新和功能通知",
       "placeholder": "输入您的邮箱",
       "subscribe": "订阅"
     },
-    "copyright": "© 2024 Next.js AI Starter. MIT许可证开源项目。",
-    "poweredBy": "基于 Next.js 和 AI 构建"
+    "copyright": "© 2024 餐饮管理系统. 保留所有权利。",
+    "poweredBy": "基于 Next.js 和 AI 技术构建"
   },
   "localeSwitcher": {
     "label": "中文",
     "locale": "{locale, select, en {English} zhCN {中文} other {Unknown}}"
   },
   "offline": {
-    "title": "Next.js AI Starter",
-    "description": "现代化Web开发起始套件",
+    "title": "餐饮管理系统",
+    "description": "智能化餐厅运营管理平台",
     "tips": "请检查您的网络连接"
+  },
+  "common": {
+    "add": "添加",
+    "edit": "编辑",
+    "delete": "删除",
+    "save": "保存",
+    "cancel": "取消",
+    "confirm": "确认",
+    "search": "搜索",
+    "filter": "筛选",
+    "export": "导出",
+    "import": "导入",
+    "refresh": "刷新",
+    "loading": "加载中...",
+    "noData": "暂无数据",
+    "error": "错误",
+    "success": "成功",
+    "warning": "警告",
+    "info": "信息"
   }
 }

@@ -3,7 +3,7 @@
 import { useTranslations } from 'next-intl';
 import Link from 'next/link';
 import { useState } from 'react';
-import { Github, Twitter, Linkedin, Mail, Send, Zap, ArrowUp, Heart } from 'lucide-react';
+import { UtensilsCrossed, Phone, MessageSquare, Mail, Send, ArrowUp, Heart, Settings } from 'lucide-react';
 import { Button } from '~/components/ui/button';
 import { Input } from '~/components/ui/input';
 
@@ -27,48 +27,48 @@ export default function Footer() {
 
   const footerSections = [
     {
-      title: t('footer.project.title'),
+      title: '系统功能',
       links: [
-        { name: t('footer.project.github'), href: 'https://github.com/vadxq/nextjs-ai-starter', external: true },
-        { name: t('footer.project.documentation'), href: 'https://github.com/vadxq/nextjs-ai-starter/blob/main/README.md', external: true },
-        { name: t('footer.project.examples'), href: 'https://github.com/vadxq/nextjs-ai-starter', external: true },
-        { name: t('footer.project.changelog'), href: 'https://github.com/vadxq/nextjs-ai-starter/releases', external: true },
+        { name: '订单管理', href: '/orders' },
+        { name: '菜品管理', href: '/menu' },
+        { name: '桌台管理', href: '/tables' },
+        { name: '员工管理', href: '/staff' },
       ],
     },
     {
-      title: t('footer.community.title'),
+      title: '使用手册',
       links: [
-        { name: t('footer.community.discussions'), href: 'https://github.com/vadxq/nextjs-ai-starter/discussions', external: true },
-        { name: t('footer.community.issues'), href: 'https://github.com/vadxq/nextjs-ai-starter/issues', external: true },
-        { name: t('footer.community.contributing'), href: 'https://github.com/vadxq/nextjs-ai-starter/blob/main/CONTRIBUTING.md', external: true },
-        { name: t('footer.community.discord'), href: 'https://discord.gg/vadxq', external: true },
+        { name: '操作指南', href: '#' },
+        { name: '功能介绍', href: '#' },
+        { name: '快速入门', href: '#' },
+        { name: '常见问题', href: '#' },
       ],
     },
     {
-      title: t('footer.resources.title'),
+      title: '技术支持',
       links: [
-        { name: t('footer.resources.nextjs'), href: 'https://nextjs.org', external: true },
-        { name: t('footer.resources.tailwind'), href: 'https://tailwindcss.com', external: true },
-        { name: t('footer.resources.typescript'), href: 'https://typescriptlang.org', external: true },
-        { name: t('footer.resources.vercel'), href: 'https://vercel.com', external: true },
+        { name: '客服热线', href: '#' },
+        { name: '在线咨询', href: '#' },
+        { name: '培训服务', href: '#' },
+        { name: '维护保障', href: '#' },
       ],
     },
     {
-      title: t('footer.legal.title'),
+      title: '法律信息',
       links: [
-        { name: t('footer.legal.license'), href: 'https://github.com/vadxq/nextjs-ai-starter/blob/main/LICENSE', external: true },
-        { name: t('footer.legal.terms'), href: 'https://github.com/vadxq/nextjs-ai-starter/blob/main/TERMS.md', external: true },
-        { name: t('footer.legal.privacy'), href: 'https://github.com/vadxq/nextjs-ai-starter/blob/main/PRIVACY.md', external: true },
-        { name: t('footer.legal.security'), href: 'https://github.com/vadxq/nextjs-ai-starter/blob/main/SECURITY.md', external: true },
+        { name: '服务条款', href: '#' },
+        { name: '隐私政策', href: '#' },
+        { name: '用户协议', href: '#' },
+        { name: '安全政策', href: '#' },
       ],
     },
   ];
 
   const socialLinks = [
-    { name: 'GitHub', icon: Github, href: 'https://github.com/vadxq', color: 'hover:text-gray-900 dark:hover:text-white' },
-    { name: 'Twitter', icon: Twitter, href: 'https://twitter.com/vadxqDon', color: 'hover:text-blue-500' },
-    { name: 'LinkedIn', icon: Linkedin, href: 'https://linkedin.com', color: 'hover:text-blue-600' },
-    { name: 'Email', icon: Mail, href: 'mailto:dxl@vadxq.com', color: 'hover:text-green-500' },
+    { name: '电话咨询', icon: Phone, href: 'tel:400-888-8888', color: 'hover:text-green-500' },
+    { name: '在线客服', icon: MessageSquare, href: '#', color: 'hover:text-blue-500' },
+    { name: '邮件联系', icon: Mail, href: 'mailto:service@restaurant.com', color: 'hover:text-purple-500' },
+    { name: '系统设置', icon: Settings, href: '#', color: 'hover:text-gray-900 dark:hover:text-white' },
   ];
 
   return (
@@ -89,7 +89,7 @@ export default function Footer() {
                   <div className="flex items-center space-x-3">
                     <div className="relative">
                       <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-blue-500 to-purple-600 shadow-lg">
-                        <Zap className="h-5 w-5 text-white" />
+                        <UtensilsCrossed className="h-5 w-5 text-white" />
                       </div>
                       <div className="absolute inset-0 rounded-xl bg-gradient-to-br from-blue-500 to-purple-600 opacity-30 blur-lg" />
                     </div>
@@ -97,23 +97,20 @@ export default function Footer() {
                       {t('layout.title')}
                     </span>
                   </div>
-                  <p className="max-w-md leading-relaxed text-gray-600 dark:text-gray-400">
-                    现代化的Next.js开发模板，集成AI功能、国际化支持、暗黑模式和最新UI组件。助力开发者快速构建生产级应用。
-                  </p>
                 </div>
 
                 {/* 订阅区域 */}
                 <div className="space-y-4">
                   <div>
-                    <h3 className="mb-2 text-lg font-semibold text-gray-900 dark:text-white">{t('footer.newsletter.title')}</h3>
-                    <p className="text-sm text-gray-600 dark:text-gray-400">{t('footer.newsletter.description')}</p>
+                    <h3 className="mb-2 text-lg font-semibold text-gray-900 dark:text-white">获取更新</h3>
+                    <p className="text-sm text-gray-600 dark:text-gray-400">订阅系统更新和功能通知</p>
                   </div>
 
                   <form onSubmit={handleSubscribe} className="flex space-x-2">
                     <div className="relative flex-1">
                       <Input
                         type="email"
-                        placeholder={t('footer.newsletter.placeholder')}
+                        placeholder="输入您的邮箱"
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
                         className="w-full border-white/20 bg-white/50 backdrop-blur-sm transition-all duration-300 focus:bg-white/80 dark:border-white/10 dark:bg-white/5 dark:focus:bg-white/10"
@@ -141,12 +138,15 @@ export default function Footer() {
                       <ul className="space-y-3">
                         {section.links.map((link) => (
                           <li key={link.name}>
-                            <Link
-                              href={link.href}
-                              className="text-sm text-gray-600 transition-colors duration-200 hover:text-blue-600 dark:text-gray-400 dark:hover:text-blue-400"
-                              {...(link.external && { target: '_blank', rel: 'noopener noreferrer' })}>
-                              {link.name}
-                            </Link>
+                            {link.href === '#' ? (
+                              <span className="cursor-default text-sm text-gray-600 dark:text-gray-400">{link.name}</span>
+                            ) : (
+                              <Link
+                                href={link.href}
+                                className="text-sm text-gray-600 transition-colors duration-200 hover:text-blue-600 dark:text-gray-400 dark:hover:text-blue-400">
+                                {link.name}
+                              </Link>
+                            )}
                           </li>
                         ))}
                       </ul>
@@ -165,10 +165,10 @@ export default function Footer() {
             <div className="flex flex-col items-center justify-between space-y-4 md:flex-row md:space-y-0">
               {/* 版权信息 */}
               <div className="flex flex-col items-center space-y-2 text-sm text-gray-600 md:flex-row md:space-y-0 md:space-x-6 dark:text-gray-400">
-                <p>{t('footer.copyright')}</p>
+                <p>© 2024 餐饮管理系统 版权所有</p>
                 <div className="hidden h-1 w-1 rounded-full bg-gray-400 md:block" />
                 <p className="flex items-center space-x-1">
-                  <span>{t('footer.poweredBy')}</span>
+                  <span>为餐饮行业数字化赋能</span>
                   <Heart className="h-3 w-3 text-red-500" />
                 </p>
               </div>
@@ -182,8 +182,7 @@ export default function Footer() {
                       key={social.name}
                       href={social.href}
                       className={`rounded-lg border border-white/20 bg-white/50 p-2 text-gray-600 dark:border-white/10 dark:bg-white/5 dark:text-gray-400 ${social.color} backdrop-blur-sm transition-all duration-300 hover:scale-110 hover:shadow-lg`}
-                      target="_blank"
-                      rel="noopener noreferrer">
+                      {...(social.href.startsWith('tel:') || social.href.startsWith('mailto:') ? {} : { target: '_blank', rel: 'noopener noreferrer' })}>
                       <social.icon className="h-4 w-4" />
                       <span className="sr-only">{social.name}</span>
                     </Link>

@@ -2,135 +2,223 @@ import { Button } from '~/components/ui/button';
 import { useTranslations } from 'next-intl';
 import { getTranslations } from 'next-intl/server';
 import PageLayout from '~/components/layout/pageLayout';
-import { ArrowRight, Sparkles, Globe, Rocket, Brain, Layers, Github, Star } from 'lucide-react';
+import { UtensilsCrossed, ShoppingCart, TrendingUp, Clock, DollarSign, AlertCircle, CheckCircle, ChefHat, Table } from 'lucide-react';
 import Link from 'next/link';
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
-  const t = await getTranslations({ locale, namespace: 'homePage' });
+  const t = await getTranslations({ locale, namespace: 'dashboard' });
 
   return {
     title: t('title'),
-    description: t('description'),
+    description: '餐饮管理系统仪表板 - 实时监控餐厅运营数据',
   };
 }
 
-export default function Home() {
-  const t = useTranslations('homePage');
+export default function Dashboard() {
+  const t = useTranslations('dashboard');
+  const homeT = useTranslations('homePage');
+
+  // 模拟数据
+  const todayStats = [
+    {
+      title: t('stats.todayOrders'),
+      value: '58',
+      change: '+12%',
+      icon: ShoppingCart,
+      color: 'from-blue-500 to-cyan-500',
+    },
+    {
+      title: t('stats.todayRevenue'),
+      value: '¥8,420',
+      change: '+18%',
+      icon: DollarSign,
+      color: 'from-green-500 to-emerald-500',
+    },
+    {
+      title: t('stats.activeTable'),
+      value: '12/20',
+      change: '60%',
+      icon: Table,
+      color: 'from-purple-500 to-pink-500',
+    },
+    {
+      title: t('stats.waitingOrders'),
+      value: '3',
+      change: '-2',
+      icon: Clock,
+      color: 'from-orange-500 to-red-500',
+    },
+  ];
+
+  const recentOrders = [
+    { id: '#001', table: '桌号5', items: '宫保鸡丁, 白米饭', total: '¥68', status: 'preparing', time: '10分钟前' },
+    { id: '#002', table: '桌号12', items: '红烧肉, 青菜', total: '¥85', status: 'ready', time: '15分钟前' },
+    { id: '#003', table: '桌号3', items: '麻婆豆腐', total: '¥45', status: 'served', time: '20分钟前' },
+    { id: '#004', table: '桌号8', items: '糖醋里脊', total: '¥72', status: 'confirmed', time: '25分钟前' },
+  ];
+
+  const popularDishes = [
+    { name: '宫保鸡丁', orders: 12, revenue: '¥816' },
+    { name: '红烧肉', orders: 8, revenue: '¥680' },
+    { name: '麻婆豆腐', orders: 15, revenue: '¥675' },
+    { name: '糖醋里脊', orders: 6, revenue: '¥432' },
+  ];
+
+  const getStatusIcon = (status: string) => {
+    switch (status) {
+      case 'preparing':
+        return <ChefHat className="h-4 w-4 text-orange-500" />;
+      case 'ready':
+        return <AlertCircle className="h-4 w-4 text-blue-500" />;
+      case 'served':
+        return <CheckCircle className="h-4 w-4 text-green-500" />;
+      default:
+        return <Clock className="h-4 w-4 text-gray-500" />;
+    }
+  };
 
   const features = [
     {
-      icon: Brain,
-      title: t('features.ai.title'),
-      description: t('features.ai.description'),
+      icon: ShoppingCart,
+      title: homeT('features.orders.title'),
+      description: homeT('features.orders.description'),
       gradient: 'from-blue-500 to-cyan-500',
+      href: '/orders',
     },
     {
-      icon: Layers,
-      title: t('features.modern.title'),
-      description: t('features.modern.description'),
+      icon: UtensilsCrossed,
+      title: homeT('features.menu.title'),
+      description: homeT('features.menu.description'),
       gradient: 'from-green-500 to-emerald-500',
+      href: '/menu',
     },
     {
-      icon: Globe,
-      title: t('features.i18n.title'),
-      description: t('features.i18n.description'),
+      icon: Table,
+      title: homeT('features.tables.title'),
+      description: homeT('features.tables.description'),
       gradient: 'from-purple-500 to-pink-500',
+      href: '/tables',
     },
     {
-      icon: Rocket,
-      title: t('features.performance.title'),
-      description: t('features.performance.description'),
+      icon: TrendingUp,
+      title: homeT('features.analytics.title'),
+      description: homeT('features.analytics.description'),
       gradient: 'from-orange-500 to-red-500',
+      href: '/reports',
     },
   ];
 
   return (
     <PageLayout>
-      <div className="relative">
-        {/* Hero Section */}
-        <section className="relative flex min-h-screen items-center justify-center overflow-hidden">
-          {/* 背景装饰 */}
-          <div className="absolute inset-0 bg-gradient-to-br from-blue-50/50 via-transparent to-purple-50/50 dark:from-blue-950/20 dark:via-transparent dark:to-purple-950/20" />
+      <div className="space-y-8">
+        {/* 欢迎区域 */}
+        <div className="liquid-glass-card rounded-2xl p-6">
+          <div className="flex items-center justify-between">
+            <div>
+              <h1 className="text-3xl font-bold text-gray-900 dark:text-white">{t('welcome')} 👋</h1>
+              <p className="mt-2 text-gray-600 dark:text-gray-400">
+                {t('todayOverview')} -{' '}
+                {new Date().toLocaleDateString('zh-CN', {
+                  year: 'numeric',
+                  month: 'long',
+                  day: 'numeric',
+                  weekday: 'long',
+                })}
+              </p>
+            </div>
+            <div className="liquid-glass-badge inline-flex items-center space-x-2 rounded-full px-4 py-2">
+              <UtensilsCrossed className="h-5 w-5 text-blue-500" />
+              <span className="text-sm font-medium text-gray-600 dark:text-gray-400">{homeT('openSource')}</span>
+            </div>
+          </div>
+        </div>
 
-          {/* 动态网格背景 */}
-          <div className="grid-background absolute inset-0" />
-
-          {/* 浮动光圈 */}
-          <div className="absolute top-1/4 left-1/4 h-72 w-72 animate-pulse rounded-full bg-blue-500/10 blur-3xl" />
-          <div className="absolute right-1/4 bottom-1/4 h-96 w-96 animate-pulse rounded-full bg-purple-500/10 blur-3xl delay-1000" />
-
-          <div className="relative z-10 mx-auto max-w-7xl px-4 text-center sm:px-6 lg:px-8">
-            <div className="space-y-8">
-              {/* 标题区域 */}
-              <div className="space-y-6">
-                <div className="liquid-glass-badge inline-flex items-center space-x-2 rounded-full px-4 py-2">
-                  <Sparkles className="h-4 w-4 text-blue-500" />
-                  <span className="text-sm font-medium text-gray-600 dark:text-gray-400">{t('openSource')}</span>
+        {/* 统计数据 */}
+        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          {todayStats.map((stat, index) => (
+            <div key={index} className="liquid-glass-card rounded-2xl p-6">
+              <div className="flex items-center justify-between">
+                <div>
+                  <p className="text-sm font-medium text-gray-600 dark:text-gray-400">{stat.title}</p>
+                  <p className="mt-2 text-3xl font-bold text-gray-900 dark:text-white">{stat.value}</p>
+                  <p className="mt-1 text-sm text-green-600">{stat.change} vs 昨日</p>
                 </div>
-
-                <h1 className="text-5xl leading-tight font-bold md:text-7xl">
-                  <span className="gradient-text-animated">{t('title')}</span>
-                </h1>
-
-                <p className="mx-auto max-w-3xl text-xl leading-relaxed text-gray-600 md:text-2xl dark:text-gray-300">{t('subtitle')}</p>
-
-                <p className="mx-auto max-w-2xl text-lg text-gray-500 dark:text-gray-400">{t('description')}</p>
+                <div className={`rounded-xl bg-gradient-to-br p-3 ${stat.color} liquid-glow shadow-lg`}>
+                  <stat.icon className="h-6 w-6 text-white" />
+                </div>
               </div>
+            </div>
+          ))}
+        </div>
 
-              {/* CTA 按钮 */}
-              <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
-                <Button size="lg" className="group liquid-glass-button-primary" asChild>
-                  <Link href="https://github.com/vadxq/nextjs-ai-starter/blob/main/README.md">
-                    <span className="flex items-center space-x-2">
-                      <span>{t('getStarted')}</span>
-                      <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
-                    </span>
-                  </Link>
-                </Button>
-
-                <Button variant="outline" size="lg" className="group liquid-glass-button-secondary" asChild>
-                  <Link href="https://github.com/vadxq/nextjs-ai-starter" target="_blank" rel="noopener noreferrer">
-                    <span className="flex items-center space-x-2">
-                      <Github className="h-4 w-4 transition-transform duration-300 group-hover:rotate-12" />
-                      <span>{t('learnMore')}</span>
-                      <Star className="h-3 w-3 opacity-60" />
-                    </span>
-                  </Link>
+        {/* 主要内容区域 */}
+        <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
+          {/* 最近订单 */}
+          <div className="lg:col-span-2">
+            <div className="liquid-glass-card rounded-2xl p-6">
+              <div className="mb-6 flex items-center justify-between">
+                <h2 className="text-xl font-semibold text-gray-900 dark:text-white">{t('recentOrders')}</h2>
+                <Button variant="outline" size="sm" asChild>
+                  <Link href="/orders">查看全部</Link>
                 </Button>
               </div>
 
-              {/* 统计数据 */}
-              <div className="grid grid-cols-2 gap-8 pt-16 md:grid-cols-4">
-                {[
-                  { number: '15+', label: '核心特性' },
-                  { number: '99.9%', label: '类型安全' },
-                  { number: '2', label: '语言支持' },
-                  { number: '24/7', label: '开源维护' },
-                ].map((stat, index) => (
-                  <div key={index} className="space-y-2">
-                    <div className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-3xl font-bold text-transparent md:text-4xl">{stat.number}</div>
-                    <div className="text-sm text-gray-500 dark:text-gray-400">{stat.label}</div>
+              <div className="space-y-4">
+                {recentOrders.map((order) => (
+                  <div key={order.id} className="flex items-center justify-between border-b border-gray-100 pb-4 last:border-b-0 dark:border-gray-800">
+                    <div className="flex items-center space-x-4">
+                      {getStatusIcon(order.status)}
+                      <div>
+                        <p className="font-medium text-gray-900 dark:text-white">
+                          {order.id} - {order.table}
+                        </p>
+                        <p className="text-sm text-gray-600 dark:text-gray-400">{order.items}</p>
+                      </div>
+                    </div>
+                    <div className="text-right">
+                      <p className="font-medium text-gray-900 dark:text-white">{order.total}</p>
+                      <p className="text-sm text-gray-500">{order.time}</p>
+                    </div>
                   </div>
                 ))}
               </div>
             </div>
           </div>
-        </section>
 
-        {/* Features Section */}
-        <section className="relative py-24">
-          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="mb-16 space-y-6 text-center">
-              <h2 className="bg-gradient-to-r from-gray-900 to-gray-600 bg-clip-text text-4xl font-bold text-transparent md:text-5xl dark:from-white dark:to-gray-300">
-                为什么选择这个模板
-              </h2>
-              <p className="mx-auto max-w-3xl text-xl text-gray-600 dark:text-gray-400">基于最新技术栈构建，为现代化Web开发提供最佳实践</p>
+          {/* 热门菜品 */}
+          <div>
+            <div className="liquid-glass-card rounded-2xl p-6">
+              <h2 className="mb-6 text-xl font-semibold text-gray-900 dark:text-white">{t('popularDishes')}</h2>
+
+              <div className="space-y-4">
+                {popularDishes.map((dish, index) => (
+                  <div key={index} className="flex items-center justify-between">
+                    <div>
+                      <p className="font-medium text-gray-900 dark:text-white">{dish.name}</p>
+                      <p className="text-sm text-gray-600 dark:text-gray-400">{dish.orders} 份订单</p>
+                    </div>
+                    <p className="font-medium text-green-600">{dish.revenue}</p>
+                  </div>
+                ))}
+              </div>
             </div>
+          </div>
+        </div>
 
-            <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4">
-              {features.map((feature, index) => (
-                <div key={index} className="group liquid-glass-card float-animation relative rounded-2xl p-6" style={{ animationDelay: `${index * 0.2}s` }}>
+        {/* 功能模块 */}
+        <div className="liquid-glass-card rounded-2xl p-8">
+          <div className="mb-8 text-center">
+            <h2 className="bg-gradient-to-r from-gray-900 to-gray-600 bg-clip-text text-3xl font-bold text-transparent md:text-4xl dark:from-white dark:to-gray-300">管理功能</h2>
+            <p className="mt-4 text-xl text-gray-600 dark:text-gray-400">一站式餐厅运营管理解决方案</p>
+          </div>
+
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
+            {features.map((feature, index) => (
+              <Link key={index} href={feature.href} className="group">
+                <div
+                  className="liquid-glass-card float-animation relative rounded-2xl p-6 transition-all duration-300 hover:scale-105"
+                  style={{ animationDelay: `${index * 0.1}s` }}>
                   {/* 背景渐变 */}
                   <div className={`absolute inset-0 rounded-2xl bg-gradient-to-br ${feature.gradient} opacity-0 transition-opacity duration-500 group-hover:opacity-5`} />
 
@@ -142,50 +230,15 @@ export default function Home() {
 
                     {/* 内容 */}
                     <div className="space-y-2">
-                      <h3 className="text-xl font-semibold text-gray-900 dark:text-white">{feature.title}</h3>
-                      <p className="leading-relaxed text-gray-600 dark:text-gray-400">{feature.description}</p>
+                      <h3 className="text-lg font-semibold text-gray-900 dark:text-white">{feature.title}</h3>
+                      <p className="text-sm leading-relaxed text-gray-600 dark:text-gray-400">{feature.description}</p>
                     </div>
                   </div>
                 </div>
-              ))}
-            </div>
+              </Link>
+            ))}
           </div>
-        </section>
-
-        {/* CTA Section */}
-        <section className="relative py-24">
-          <div className="absolute inset-0 bg-gradient-to-r from-blue-500/10 via-purple-500/10 to-blue-500/10" />
-          <div className="relative mx-auto max-w-4xl px-4 text-center sm:px-6 lg:px-8">
-            <div className="liquid-glass-card space-y-8 rounded-3xl p-12">
-              <div className="space-y-4">
-                <h2 className="bg-gradient-to-r from-gray-900 to-gray-600 bg-clip-text text-4xl font-bold text-transparent md:text-5xl dark:from-white dark:to-gray-300">
-                  准备好开始了吗？
-                </h2>
-                <p className="text-xl text-gray-600 dark:text-gray-400">立即使用这个模板，开始构建您的下一个项目</p>
-              </div>
-
-              <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
-                <Button size="lg" className="group liquid-glass-button-primary" asChild>
-                  <Link href="/docs">
-                    <span className="flex items-center space-x-2">
-                      <Rocket className="h-4 w-4 transition-transform duration-300 group-hover:rotate-12" />
-                      <span>开始使用</span>
-                    </span>
-                  </Link>
-                </Button>
-
-                <Button variant="outline" size="lg" className="group liquid-glass-button-secondary" asChild>
-                  <Link href="https://github.com" target="_blank" rel="noopener noreferrer">
-                    <span className="flex items-center space-x-2">
-                      <Github className="h-4 w-4 transition-transform duration-300 group-hover:rotate-12" />
-                      <span>查看源码</span>
-                    </span>
-                  </Link>
-                </Button>
-              </div>
-            </div>
-          </div>
-        </section>
+        </div>
       </div>
     </PageLayout>
   );

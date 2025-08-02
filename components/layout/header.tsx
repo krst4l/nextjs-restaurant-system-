@@ -2,7 +2,7 @@
 
 import { useTranslations } from 'next-intl';
 import { useState, useEffect } from 'react';
-import { Menu, X, Search, Bell, User, Settings, Zap, Github } from 'lucide-react';
+import { Menu, X, Search, Bell, User, Settings, UtensilsCrossed, ShoppingCart } from 'lucide-react';
 import { Button } from '~/components/ui/button';
 import { ThemeToggle } from '~/components/themeToggle';
 import LocaleSwitcher from '~/components/langSelect/localeSwitcher';
@@ -27,18 +27,20 @@ export default function Header() {
   }, []);
 
   const navigation = [
-    { name: t('header.navigation.home'), href: '/' },
-    { name: t('header.navigation.features'), href: '/features' },
-    { name: t('header.navigation.docs'), href: '/docs' },
-    { name: t('header.navigation.examples'), href: '/examples' },
-    { name: t('header.navigation.about'), href: '/about' },
+    { name: t('header.navigation.dashboard'), href: '/' },
+    { name: t('header.navigation.orders'), href: '/orders' },
+    { name: t('header.navigation.menu'), href: '/menu' },
+    { name: t('header.navigation.tables'), href: '/tables' },
+    { name: t('header.navigation.staff'), href: '/staff' },
+    { name: t('header.navigation.inventory'), href: '/inventory' },
+    { name: t('header.navigation.reports'), href: '/reports' },
   ];
 
   return (
     <>
       <header className={`fixed top-0 right-0 left-0 z-50 transition-all duration-700 ease-out ${isScrolled ? 'liquid-glass-header-scrolled' : 'liquid-glass-header'} `}>
         {/* 动态彩虹光线 */}
-        <div className="through-purple-500/60 absolute top-0 right-0 left-0 h-px animate-pulse bg-gradient-to-r from-transparent via-blue-500/60 to-transparent" />
+        <div className="absolute top-0 right-0 left-0 h-px animate-pulse bg-gradient-to-r from-transparent via-blue-500/60 to-transparent" />
 
         {/* 液态玻璃容器 */}
         <div className="liquid-glass-container">
@@ -49,7 +51,7 @@ export default function Header() {
                 <Link href="/" className="group flex items-center space-x-2">
                   <div className="relative">
                     <div className="liquid-glow flex h-9 w-9 items-center justify-center rounded-2xl bg-gradient-to-br from-blue-500 via-purple-500 to-pink-500 shadow-lg transition-all duration-500 group-hover:shadow-blue-500/40">
-                      <Zap className="h-5 w-5 text-white drop-shadow-sm" />
+                      <UtensilsCrossed className="h-5 w-5 text-white drop-shadow-sm" />
                     </div>
                     <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-blue-500 via-purple-500 to-pink-500 opacity-0 blur-xl transition-all duration-500 group-hover:opacity-40" />
                   </div>
@@ -60,7 +62,7 @@ export default function Header() {
               </div>
 
               {/* 桌面导航 - 增强液态效果 */}
-              <div className="hidden md:block">
+              <div className="hidden lg:block">
                 <div className="flex items-center space-x-1">
                   {navigation.map((item) => {
                     const isActive = pathname === item.href;
@@ -68,7 +70,7 @@ export default function Header() {
                       <Link
                         key={item.name}
                         href={item.href}
-                        className={`liquid-nav-item relative rounded-xl px-4 py-2 text-sm font-medium transition-all duration-500 ${
+                        className={`liquid-nav-item relative rounded-xl px-3 py-2 text-sm font-medium transition-all duration-500 ${
                           isActive
                             ? 'liquid-nav-active text-blue-600 dark:text-blue-400'
                             : 'liquid-nav-hover text-gray-700 hover:text-blue-600 dark:text-gray-300 dark:hover:text-blue-400'
@@ -85,10 +87,10 @@ export default function Header() {
 
               {/* 右侧操作区 - 增强玻璃按钮 */}
               <div className="flex items-center space-x-2">
-                {/* GitHub按钮 */}
-                <Button variant="ghost" size="icon" className="liquid-glass-button" asChild>
-                  <Link href="https://github.com/vadxq/nextjs-ai-starter" target="_blank" rel="noopener noreferrer">
-                    <Github className="h-4 w-4" />
+                {/* 快速新建订单 */}
+                <Button variant="ghost" size="icon" className="liquid-glass-button hidden md:flex" asChild>
+                  <Link href="/orders">
+                    <ShoppingCart className="h-4 w-4" />
                   </Link>
                 </Button>
 
@@ -137,7 +139,7 @@ export default function Header() {
                 </DropdownMenu>
 
                 {/* 移动端菜单按钮 */}
-                <Button variant="ghost" size="icon" className="liquid-glass-button md:hidden" onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
+                <Button variant="ghost" size="icon" className="liquid-glass-button lg:hidden" onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
                   {isMobileMenuOpen ? <X className="h-4 w-4" /> : <Menu className="h-4 w-4" />}
                 </Button>
               </div>
@@ -146,12 +148,12 @@ export default function Header() {
         </div>
 
         {/* 底部彩虹光线 */}
-        <div className="through-pink-500/50 absolute right-0 bottom-0 left-0 h-px bg-gradient-to-r from-transparent via-purple-500/50 to-transparent" />
+        <div className="absolute right-0 bottom-0 left-0 h-px bg-gradient-to-r from-transparent via-purple-500/50 to-transparent" />
       </header>
 
       {/* 移动端菜单 - 增强液态效果 */}
       {isMobileMenuOpen && (
-        <div className="fixed inset-x-0 top-16 z-40 md:hidden">
+        <div className="fixed inset-x-0 top-16 z-40 lg:hidden">
           <div className="liquid-glass-mobile-menu">
             <div className="space-y-4 px-4 py-6">
               {navigation.map((item) => {
@@ -177,7 +179,7 @@ export default function Header() {
 
       {/* 遮罩层 - 增强模糊 */}
       {isMobileMenuOpen && (
-        <div className="fixed inset-0 top-16 z-30 bg-black/20 backdrop-blur-md transition-all duration-300 md:hidden" onClick={() => setIsMobileMenuOpen(false)} />
+        <div className="fixed inset-0 top-16 z-30 bg-black/20 backdrop-blur-md transition-all duration-300 lg:hidden" onClick={() => setIsMobileMenuOpen(false)} />
       )}
     </>
   );
